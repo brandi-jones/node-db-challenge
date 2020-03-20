@@ -40,11 +40,19 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 - [ ] Explain the difference between `Relational Databases` and `SQL`.
 
+- Relational databases store related data, where the data is stored in a tabular format grouped into rows and columns. SQL stands for Structured Query Language. It is a language used to communicate with databases and designed for managing data held in a relational database management system.
+
 - [ ] Why do tables need a `primary key`?
+
+- So that each row can be uniquely identified
 
 - [ ] What is the name given to a table column that references the primary key on another table.
 
+- Foreign key
+
 - [ ] What do we need in order to have a _many to many_ relationship between two tables.
+
+- An intermediary table is needed, that holds foreign keys that reference the primary key on the related tables. While each foreign key on the intermediary table is not unique, the combinations of keys should be unique.
 
 ## Minimum Viable Product
 
