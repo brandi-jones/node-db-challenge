@@ -15,6 +15,22 @@ router.get('/', (req, res) => {
     })
 })
 
+//get a specific project by id
+router.get('/:id', (req, res) => {
+    Projects.getProjectById(req.params.id) 
+    .then(response => {
+        if (response.length != 0) {
+            res.json(response)
+        } else {
+            res.status(404).json({ message: `Could not find project with id: ${req.params.id}`})
+        }
+        
+    })
+    .catch(error => {
+        res.status(500).json({message: `Failed to get project with id: ${req.params.id}`})
+    })
+})
+
 //post a project
 router.post('/', (req, res) => {
     Projects.addProject(req.body)
@@ -26,13 +42,30 @@ router.post('/', (req, res) => {
     })
 })
 
+
+//delete a project 
+router.delete('/:id', (req, res) => {
+    const { id } = req.params;
+
+    Projects.removeProject(id)
+    .then(response => {
+        if (response.length != 0) {
+            res.json(response);
+        } else {
+            res.status(404).json({ message: 'Could not find project with given id' });
+        }
+    })
+    .catch(error => {
+        res.status(500).json({ message: 'Failed to delete project' });
+    })
+})
+
 //get a project's tasks
 router.get('/:id/tasks', (req, res) => {
     const { id } = req.params;
 
     Projects.getTasksForProject(id)
     .then(tasks => {
-        console.log("response", tasks)
         if  (tasks.length) {
             res.json(tasks)
         } else {
@@ -59,6 +92,8 @@ router.post('/:id/tasks', (req, res) => {
 
     
 })
+
+
 
 
 
